@@ -17,6 +17,14 @@ if __name__ == '__main__':
 
     print_hi()
 
+    # instantiate the config object
+    config = pp.Config()
+
+    # show the config parameters
+    config.print()
+
+
+
     # instantiate the project object
     project = pp.Project()
 
