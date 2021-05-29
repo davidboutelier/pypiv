@@ -2,10 +2,22 @@
 Documentation for entire pypiv module
 """
 
-def printlog(message):
-    # check if log.txt exist
-    # if does not exist create log.txt
-    # print message in both display and log file
+
+def print_log(message):
+    """
+    Print to screen and in log file
+    :param message: a string to be displayed on screen and logged in the log file
+    :return: None
+    """
+    import os
+
+    if not os.path.isfile('log.txt'):
+        os.mknod('log.txt')
+
+    print(message)
+    with open('log.txt', "a") as f:
+        f.write(message + '\n')
+
 
 class Config:
     """
@@ -41,9 +53,9 @@ class Config:
             with open('config.json', 'r') as fp:
                 config = json.load(fp)
 
-            print('Parameters in the configuration file: ')
+            print_log('Parameters in the configuration file: ')
             for key in config.keys():
-                print(key + ': ' + config[key])
+                print_log(key + ': ' + config[key])
 
     def save(self, config):
         import json
@@ -64,4 +76,4 @@ class Project:
 
         # read the path to projects from config file
 
-        print(name)
+        print_log(name)
